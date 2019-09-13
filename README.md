@@ -6,7 +6,7 @@ After downloading the repository (assuming you have node.js installed) please us
 To run the application please run npm/yarn start.
 To run the tests (it keeps polloing) run npm/yarn test.
 
-The tests are located in src/__test__.
+The tests are located in src/\__test\__.
 
 # The exercise
 This is a very simple sudoku board. pressing the button checks the validity.
