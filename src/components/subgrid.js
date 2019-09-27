@@ -1,5 +1,5 @@
 import React from "react";
-import { CellContainer }  from "./cellContainer";
+import { Cell }  from "./cell";
 
 export function Subgrid(props) {
   return (
@@ -7,12 +7,12 @@ export function Subgrid(props) {
       <table>
       <tbody>
         <tr>
-          <CellContainer subgridNumber={props.subgridNumber} cellNumber={0} />
-          <CellContainer subgridNumber={props.subgridNumber} cellNumber={1} />
+          <Cell subgridNumber={props.subgridNumber} cellNumber={0} />
+          <Cell subgridNumber={props.subgridNumber} cellNumber={1} />
         </tr>
         <tr>
-          <CellContainer subgridNumber={props.subgridNumber} cellNumber={2} />
-          <CellContainer subgridNumber={props.subgridNumber} cellNumber={3} />
+          <Cell subgridNumber={props.subgridNumber} cellNumber={2} />
+          <Cell subgridNumber={props.subgridNumber} cellNumber={3} />
         </tr>
         </tbody>
         </table>

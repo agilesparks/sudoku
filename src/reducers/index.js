@@ -8,18 +8,19 @@ const inCell = 1;
 for (let row = 0; row < Math.pow(sudokuRoot, 2); row++) {
   storeSudokuGrid[row] = [];
   for (let col = 0; col < Math.pow(sudokuRoot, 2); col++) {
-    storeSudokuGrid[row][col] = "";
+    storeSudokuGrid[row][col] = "1";
   }
 }
 
-export const initialState = {
+ const initialState = {
   grid: storeSudokuGrid,
   validity: true
 };
 
 export default function rootReducer(state, action) {
   if (typeof state === "undefined") {
-    return initialState;
+    var newState = Object.assign({}, initialState);
+    return newState;
   } else {
     switch (action.type) {
       case "ADD_DIGIT_TO_CELL":
