@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from "./grid";
 import { DigitSelection } from "./digitSelection";
+import BoardsManager from "./BoardsManager";
 
 export default function App() {
   return (
@@ -8,6 +9,9 @@ export default function App() {
       <table align="center">
         <tbody>
           <tr>
+          <td>
+              <BoardsManager />
+            </td>
             <td>
               <Grid />
             </td>
