@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "./grid";
 import { DigitSelection } from "./digitSelection";
-import BoardsManager from "./BoardsManager";
+import BoardsManager from "./boardsManager";
 
 export default function App() {
   return (

@@ -5,9 +5,9 @@ import "@testing-library/jest-dom/extend-expect";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import rootReducer from "../../reducers";
+import rootReducer from "../../reducers/reducers";
 
-import App from "../../components/App";
+import App from "../../components/app";
 
 describe("my tests", () => {
   test("can render with redux with defaults", async () => {
