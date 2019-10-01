@@ -1,19 +1,14 @@
-import React from 'react'
-import { useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { getSavedGameListFromAPI } from "../actions";
+import { BoardsList } from "./boardsList";
 
 export default function BoardsManager() {
-  const games = useSelector(state => state.games)
-    return (
-      <div>
-        <select>
-          {games.length <= 0
-            ? 'NO DB ENTRIES YET'
-            : games.map((game) => (
-              <option style={{ padding: '10px' }} key={game.id} value={game.id}>
-                  {game.name}
-                </option>
-              ))}
-        </select>
-      </div>
-    )
+  const dispatch = useDispatch();
+  return (
+    <div>
+      <div onLoad={ getSavedGameListFromAPI(dispatch)} />
+      <BoardsList />
+    </div>
+  );
 }

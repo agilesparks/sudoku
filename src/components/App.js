@@ -5,24 +5,16 @@ import BoardsManager from "./boardsManager";
 
 export default function App() {
   return (
-    <div className="App">
-      <table align="center">
-        <tbody>
-          <tr>
-          <td>
-              <BoardsManager />
-            </td>
-            <td>
-              <Grid />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <DigitSelection />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div>
+      <div className="flexRow">
+        <div >
+          <BoardsManager />
+        </div>
+        <div className="flexColumn">
+          <Grid />
+          <DigitSelection />
+        </div>
+      </div>
     </div>
   );
 }

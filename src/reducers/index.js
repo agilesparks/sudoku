@@ -1,17 +1,21 @@
 import { isValid } from "./validityChecks";
 
 const sudokuRoot = 2;
-const storeSudokuGrid = [];
 
-for (let row = 0; row < Math.pow(sudokuRoot, 2); row++) {
-  storeSudokuGrid[row] = [];
-  for (let col = 0; col < Math.pow(sudokuRoot, 2); col++) {
-    storeSudokuGrid[row][col] = "1";
+function getCleanInitialGrid() {
+  const storeSudokuGrid = [];
+
+  for (let row = 0; row < Math.pow(sudokuRoot, 2); row++) {
+    storeSudokuGrid[row] = [];
+    for (let col = 0; col < Math.pow(sudokuRoot, 2); col++) {
+      storeSudokuGrid[row][col] = "1";
+    }
   }
+  return storeSudokuGrid;
 }
 
 const initialState = {
-  grid: storeSudokuGrid,
+  grid: getCleanInitialGrid(),
   validity: true,
   games: []
 };
@@ -21,8 +25,15 @@ export default function rootReducer(state, action) {
     let newState = Object.assign({}, initialState);
     return newState;
   } else {
-    let newState
+    let newState;
     switch (action.type) {
+      case "RESET_STORE":
+        const newInitialState = {
+          grid: getCleanInitialGrid(),
+          validity: true,
+          games: []
+        };
+        return newInitialState;
       case "ADD_DIGIT_TO_CELL":
         newState = Object.assign({}, state);
         newState.grid[action.cellRow][action.cellCol] = action.digit;
