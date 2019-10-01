@@ -16,7 +16,7 @@ export function Cell({ subgridNumber, cellNumber }) {
   const digit = useSelector(state => state.grid[row][col]);
 
   return (
-    <td
+    <div
       className="cell"
       style={{
         width: 50,
@@ -37,6 +37,6 @@ export function Cell({ subgridNumber, cellNumber }) {
           })
         }
       ></textarea>
-    </td>
+    </div>
   );
 }
