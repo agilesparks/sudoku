@@ -17,6 +17,7 @@ function getCleanInitialGrid() {
 const initialState = {
   grid: getCleanInitialGrid(),
   validity: true,
+  root: 2,
   games: []
 };
 
@@ -31,6 +32,7 @@ export default function rootReducer(state, action) {
         const newInitialState = {
           grid: getCleanInitialGrid(),
           validity: true,
+          root:2,
           games: []
         };
         return newInitialState;

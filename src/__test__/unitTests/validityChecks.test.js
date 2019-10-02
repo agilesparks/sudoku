@@ -1,4 +1,5 @@
 import { isValid } from "../../reducers/validityChecks";
+import {getCellRow, getCellCol, getDigitFromGrid} from "../../utils/matrixUtils"
 
 describe('validityChecks', () => {
     const sudokuRoot = 2
@@ -31,5 +32,13 @@ describe('validityChecks', () => {
 
     test('same values on 0,0 and 0,1', () => {
         expect(isValid(grid)).toBeFalsy()
-      })
+    })
+  
+  test('get row, get col by grid, cell', () => {
+    grid[1][2] = "5"
+    expect(getCellRow(2, 1, 2)).toBe(1)
+    expect(getCellCol(2, 1,2)).toBe(2)
+    expect(getDigitFromGrid(grid,getCellRow(2,1,2), getCellCol(2,1,2))).toBe("5")
+  })
+
   })

@@ -64,7 +64,7 @@ describe("my tests", () => {
     expect(getByText("Valid")).toBeTruthy();
   });
 
-  test("get list of games", async () => {
+  xtest("get list of games", async () => {
 
     
 

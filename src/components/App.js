@@ -4,13 +4,17 @@ import { DigitSelection } from "./digitSelection";
 import BoardsManager from "./boardsManager";
 
 export default function App() {
+  let styles = {
+    margin: '20px',
+    width: '250px',
+    height: '250px',
+    backgroundColor: 'yellow',
+    border  : "1px solid black",
+  };
   return (
     <div>
-      <div className="flexRow">
-        <div >
-          <BoardsManager />
-        </div>
-        <div className="flexColumn">
+      <div className="flexGrid" >
+        <div className="flexColumn" >
           <Grid />
           <DigitSelection />
         </div>

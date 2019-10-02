@@ -6,7 +6,8 @@ export function BoardsList() {
     return (
       <div>
         <select>
-          {games.length <= 0
+          {
+            games == undefined || games.length <= 0
             ? ''
             : games.map((game) => (
               <option style={{ padding: '10px' }} key={game.id} value={game.id}>

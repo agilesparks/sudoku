@@ -1,31 +1,23 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { getCellRow, getCellCol, getDigitFromGrid } from "../utils/matrixUtils";
 
-var getCellRow = function(subgridNumber, cellNumber) {
-  return Math.floor(subgridNumber / 2) * 2 + Math.floor(cellNumber / 2);
-};
 
-var getCellCol = function(subgridNumber, cellNumber) {
-  return (subgridNumber % 2) * 2 + (cellNumber % 2);
-};
+
 
 export function Cell({ subgridNumber, cellNumber }) {
+  const root = useSelector(state => state.root);
   const dispatch = useDispatch();
-  const row = getCellRow(subgridNumber, cellNumber);
-  const col = getCellCol(subgridNumber, cellNumber);
-  const digit = useSelector(state => state.grid[row][col]);
+  const row = getCellRow(root, subgridNumber, cellNumber);
+  const col = getCellCol(root, subgridNumber, cellNumber);
+  const digit = useSelector(state => getDigitFromGrid(state.grid, row, col));
 
   return (
-    <div
-      className="cell"
-      style={{
-        width: 50,
-        height: 50
-      }}
-    >
+    <div >
       <textarea
+        className="cell"
         rows="1"
-        cols="1"
+        cols="4"
         value={digit}
         data-testid={row + ":" + col}
         onChange={data =>

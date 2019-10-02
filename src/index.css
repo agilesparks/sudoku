@@ -2,14 +2,35 @@
   text-align: center;
 }
 
+.flexGrid {
+  display: flex;
+  flex-direction: row;
+  border: 5px;
+  border-color: #282c34;
+  justify-content: center
+}
+
 .flexRow {
   display: flex;
   flex-direction: row;
+  border: 5px;
+  border-color: #282c34;
 }
 
 .flexColumn {
   display: flex;
   flex-direction: column;
+  border: 5px;
+  border-color: #282c34;
+}
+
+.cell {
+  display: flex;
+  border: 1px solid black;
+  border-collapse: collapse;
+  vertical-align:middle;
+  text-align: center;
+  font-size: 50px
 }
 
 
@@ -40,10 +61,7 @@ table.grid {
   border-collapse: collapse;
 }
 
-table.cell {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
+
 
 td.subgrid {
   border: 2px solid black;
