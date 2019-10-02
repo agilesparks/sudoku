@@ -1,13 +1,13 @@
 import { isValid } from "./validityChecks";
 
-const sudokuRoot = 2;
+const sudokuRoot = 3;
 
 function getCleanInitialGrid() {
   const storeSudokuGrid = [];
 
-  for (let row = 0; row < Math.pow(sudokuRoot, 2); row++) {
+  for (let row = 0; row < Math.pow(sudokuRoot, sudokuRoot); row++) {
     storeSudokuGrid[row] = [];
-    for (let col = 0; col < Math.pow(sudokuRoot, 2); col++) {
+    for (let col = 0; col < Math.pow(sudokuRoot, sudokuRoot); col++) {
       storeSudokuGrid[row][col] = "1";
     }
   }
@@ -17,7 +17,7 @@ function getCleanInitialGrid() {
 const initialState = {
   grid: getCleanInitialGrid(),
   validity: true,
-  root: 2,
+  root: sudokuRoot,
   games: []
 };
 
@@ -32,7 +32,7 @@ export default function rootReducer(state, action) {
         const newInitialState = {
           grid: getCleanInitialGrid(),
           validity: true,
-          root:2,
+          root:sudokuRoot,
           games: []
         };
         return newInitialState;
