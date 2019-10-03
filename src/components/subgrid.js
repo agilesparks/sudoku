@@ -21,7 +21,7 @@ export function Subgrid(props) {
   
   return (
     
-    <div className="fleColumn" style={{ border: '1px solid black' }}>
+    <div className="flexColumn" style={{ border: '1px solid black' }}>
       {subgridRows}
     </div>
   );

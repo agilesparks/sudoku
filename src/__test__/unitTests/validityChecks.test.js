@@ -1,44 +1,25 @@
 import { isValid } from "../../reducers/validityChecks";
-import {getCellRow, getCellCol, getDigitFromGrid} from "../../utils/matrixUtils"
+import {getCellRow, getCellCol, getSolutionFromGrid, getCleanGrid, getGridWithUpdatedSolution} from "../../utils/gridUtils"
 
 describe('validityChecks', () => {
-    const sudokuRoot = 2
-    const grid = []
+    const root = 2
+    let grid = getCleanGrid(root)
     
-    beforeAll(() => {
-      /* Runs before all tests */
-    })
-    
-    afterAll(() => {
-      /* Runs after all tests */
-    })
-   
     beforeEach(() => {
-        for (let row = 0; row < Math.pow(sudokuRoot, 2); row++) {
-            grid[row] = [];
-          for (let col = 0; col < Math.pow(sudokuRoot, 2); col++) {
-            grid[row][col] = "";
-          }
-        }
-    })
-    afterEach(() => {
-      /* Runs after each test */
+      grid = getCleanGrid(root)
     })
   
     test('different values on 0,0 and 0,1', () => {
-      grid[0][0]= "1"
+      grid[0][0] = "1"
+      grid[0][0]= "0"
       expect(isValid(grid)).toBeTruthy()
     })
 
-    test('same values on 0,0 and 0,1', () => {
-        expect(isValid(grid)).toBeFalsy()
-    })
-  
   test('get row, get col by grid, cell', () => {
-    grid[1][2] = "5"
+    grid = getGridWithUpdatedSolution(grid, 1, 2, "5")
     expect(getCellRow(2, 1, 2)).toBe(1)
     expect(getCellCol(2, 1,2)).toBe(2)
-    expect(getDigitFromGrid(grid,getCellRow(2,1,2), getCellCol(2,1,2))).toBe("5")
+    expect(getSolutionFromGrid(grid,getCellRow(2,1,2), getCellCol(2,1,2))).toBe("5")
   })
 
   })

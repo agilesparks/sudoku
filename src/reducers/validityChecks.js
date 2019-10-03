@@ -1,3 +1,5 @@
+import {getSolutionFromGrid} from "../utils/gridUtils"
+
 export function isValid(grid) {
-    return grid[0][0] !== grid[0][1];
+    return getSolutionFromGrid(grid, 0,0) !== getSolutionFromGrid(grid, 0,1)
 }

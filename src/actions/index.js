@@ -4,9 +4,15 @@ export const checkValidity = data => ({
   type: "CHECK_VALIDITY"
 });
 
-export const updateCellDigit = data => ({
-  type: "UPDATE_CELL_DIGIT",
-  digit: data.digit,
+export const toggleInitial = data => ({
+  type: "TOGGLE_INITIAL",
+  cellRow: data.cell.row,
+  cellCol: data.cell.col
+});
+
+export const updateCellSolution = data => ({
+  type: "UPDATE_CELL_SOLUTION",
+  solution: data.solution,
   cellRow: data.cell.row,
   cellCol: data.cell.col
 });
