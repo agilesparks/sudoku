@@ -1,9 +1,5 @@
 import axios from "axios"
 
-export const checkValidity = data => ({
-  type: "CHECK_VALIDITY"
-});
-
 export const toggleInitial = data => ({
   type: "TOGGLE_INITIAL",
   cellRow: data.cell.row,
@@ -22,6 +18,12 @@ export const setSavedGamesList = data => ({
   games: data.games
 });
 
+export const setValidationResult = data => ({
+  type: "SET_VALIDATION_RESULT",
+  isValid: data.isValid,
+  invalidityReason: data.invalidaityReason
+});
+
 // just a note, here, in the front end, we use the id key of our data object
 // in order to identify which we want to Update or delete.
 // for our back end, we use the object id assigned by MongoDB to modify
@@ -32,14 +34,32 @@ export const setSavedGamesList = data => ({
 export function getSavedGameListFromAPI(dispatch) {
   axios
     .get("http://localhost:3001/api/getData")
-    // fetch('http://localhost:3001/api/getData')
-    // .then((data) => { console.log(data); return data.json() })
     .then(
       res => {
         dispatch(
           setSavedGamesList({
             type: "GET_SAVED_GAMES_LIST",
             games: res.data.data
+          })
+        );
+      },
+      error => {
+        console.log(error);
+      }
+    );
+}
+
+
+export function validate(dispatch) {
+  axios
+    .post("http://localhost:3001/api/validate")
+    .then(
+      res => {
+        dispatch(
+          setValidationResult({
+            type: "SET_VALIDATION_RESULT",
+            isValid: res.data.data.isValid,
+            invalidityReason: res.data.data.inValidaityReason
           })
         );
       },

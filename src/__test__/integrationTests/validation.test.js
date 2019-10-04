@@ -32,20 +32,33 @@ describe("my tests", () => {
       <Provider store={store}>{<App />}</Provider>
     );
 
+    axiosMock.post.mockImplementationOnce(() =>
+    Promise.resolve({
+      data: { data: { isValid: false } }
+    })
+  );
     fireEvent.click(getByText("Valid"));
+    await wait(() => getByText("Not Valid"))
     expect(getByText("Not Valid")).toBeInTheDocument();
-
+    
+    axiosMock.post.mockImplementationOnce(() =>
+    Promise.resolve({
+      data: { data: { isValid: true } }
+    })
+  );
     const input = getByTestId("0:0");
     fireEvent.change(input, { target: { value: "99" } });
+
 
     const input2 = getByTestId("0:1");
     fireEvent.change(input2, { target: { value: "88" } });
 
     fireEvent.click(getByText("Not Valid"));
+    await wait(() => getByText("Valid"))
     expect(getByText("Valid")).toBeTruthy();
   });
 
-  test("can render with redux with defaults (2)", async () => {
+  xtest("can render with redux with defaults (2)", async () => {
 
     const { getByText, getByTestId } = render(
       <Provider store={store}>{<App />}</Provider>

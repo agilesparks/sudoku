@@ -1,13 +1,14 @@
 import React from "react";
-import { useSelector, useDispatch  } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { validate } from "../actions";
 
-function getButtonText(validity) {
-    return validity? "Valid":"Not Valid"
+function getButtonText(isValid) {
+    return isValid? "Valid":"Not Valid"
 }
 
 export function DigitSelection() {
     const dispatch = useDispatch();
-    return <button type="button" onClick={() => dispatch({type: 'CHECK_VALIDITY' })}>
-        {getButtonText(useSelector(state => state.validity))}
+    return <button type="button" onClick={() => validate(dispatch)}>
+        {getButtonText(useSelector(state => state.isValid))}
         </button>;
 }

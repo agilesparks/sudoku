@@ -1,4 +1,3 @@
-import { isValid } from "../../reducers/validityChecks";
 import {getCellRow, getCellCol, getSolutionFromGrid, getCleanGrid, getGridWithUpdatedSolution} from "../../utils/gridUtils"
 
 describe('validityChecks', () => {
@@ -9,12 +8,6 @@ describe('validityChecks', () => {
       grid = getCleanGrid(root)
     })
   
-    test('different values on 0,0 and 0,1', () => {
-      grid[0][0] = "1"
-      grid[0][0]= "0"
-      expect(isValid(grid)).toBeTruthy()
-    })
-
   test('get row, get col by grid, cell', () => {
     grid = getGridWithUpdatedSolution(grid, 1, 2, "5")
     expect(getCellRow(2, 1, 2)).toBe(1)

@@ -5,12 +5,12 @@ export function BoardsList() {
   const games = useSelector(state => state.games)
     return (
       <div>
-        <select>
+        <select size="10">
           {
             games == undefined || games.length <= 0
             ? ''
             : games.map((game) => (
-              <option style={{ padding: '10px' }} key={game.id} value={game.id}>
+              <option  key={game.id} value={game.id}>
                   {game.name}
                 </option>
               ))}

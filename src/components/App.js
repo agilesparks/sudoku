@@ -14,6 +14,9 @@ export default function App() {
   return (
     <div>
       <div className="flexGrid" >
+      <div className="flexColumn" >
+          <BoardsManager />
+        </div>
         <div className="flexColumn" >
           <Grid />
           <DigitSelection />
