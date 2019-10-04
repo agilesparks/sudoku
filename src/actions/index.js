@@ -49,22 +49,21 @@ export function getSavedGameListFromAPI(dispatch) {
     );
 }
 
-
-export function validate(dispatch) {
-  axios
-    .post("http://localhost:3001/api/validate")
-    .then(
-      res => {
-        dispatch(
-          setValidationResult({
-            type: "SET_VALIDATION_RESULT",
-            isValid: res.data.data.isValid,
-            invalidityReason: res.data.data.inValidaityReason
-          })
-        );
-      },
-      error => {
-        console.log(error);
-      }
-    );
-}
+  export function validate(dispatch,grid) {
+    axios
+      .post("http://localhost:3001/api/validate", { grid: grid })
+      .then(
+        res => {
+          dispatch(
+            setValidationResult({
+              type: "SET_VALIDATION_RESULT",
+              isValid: res.data.data.isValid,
+              invalidityReason: res.data.data.inValidaityReason
+            })
+          );
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }

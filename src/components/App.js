@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "./grid";
-import { DigitSelection } from "./digitSelection";
+import { ValidateButton } from "./validateButton";
 import BoardsManager from "./boardsManager";
 
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
         </div>
         <div className="flexColumn" >
           <Grid />
-          <DigitSelection />
+          <ValidateButton />
         </div>
       </div>
     </div>

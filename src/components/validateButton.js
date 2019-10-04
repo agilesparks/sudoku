@@ -6,9 +6,10 @@ function getButtonText(isValid) {
     return isValid? "Valid":"Not Valid"
 }
 
-export function DigitSelection() {
+export function ValidateButton() {
     const dispatch = useDispatch();
-    return <button type="button" onClick={() => validate(dispatch)}>
+    const grid = useSelector(state => state.grid)
+    return <button type="button" onClick={() => validate(dispatch,grid)}>
         {getButtonText(useSelector(state => state.isValid))}
         </button>;
 }

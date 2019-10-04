@@ -47,7 +47,6 @@ export default function rootReducer(state, action) {
       case "SET_VALIDATION_RESULT":
         newState = Object.assign({}, state);
         newState.isValid = action.isValid;
-        console.log(newState.isValid)
         newState.invalidityReason = action.invalidityReason;
         return newState;
       default:
