@@ -10,8 +10,8 @@ export function getSolutionFromGrid(grid, row, col) {
     return grid[row][col].solution
 }
 
-export function isInitial(grid, row, col) {
-    return grid[row][col].initial
+export function isGiven(grid, row, col) {
+    return grid[row][col].given
 }
 
 export function getCleanGrid(root) {
@@ -20,7 +20,7 @@ export function getCleanGrid(root) {
     for (let row = 0; row < Math.pow(root, 2); row++) {
       grid[row] = [];
       for (let col = 0; col < Math.pow(root, 2); col++) {
-          grid[row][col] = { initial: false, solution: "" };
+          grid[row][col] = { given: false, solution: "" };
       }
     }
     return grid;
@@ -38,8 +38,8 @@ export function getGridWithUpdatedSolution(grid, row, col, solution) {
     return newGrid
 }
 
-export function getGridWithToggledInitial(grid, row, col) {
+export function getGridWithToggledGiven(grid, row, col) {
     let newGrid = getGridCopy(grid)
-    newGrid[row][col].initial= !newGrid[row][col].initial
+    newGrid[row][col].given= !newGrid[row][col].given
     return newGrid
 }

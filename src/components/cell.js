@@ -4,8 +4,9 @@ import {
   getCellRow,
   getCellCol,
   getSolutionFromGrid,
-  isInitial
+  isGiven
 } from "../utils/gridUtils";
+import { validate } from "../actions";
 
 export function Cell({ subgridNumber, cellNumber }) {
   const root = useSelector(state => state.root);
@@ -15,9 +16,11 @@ export function Cell({ subgridNumber, cellNumber }) {
   const solution = useSelector(state =>
     getSolutionFromGrid(state.grid, row, col)
   );
+  const grid = useSelector(state => state.grid)
+   
   let textColor = "#282c34"
   let isReadOnly = false
-  if (useSelector(state => isInitial(state.grid, row, col))) {
+  if (useSelector(state => isGiven(state.grid, row, col))) {
     textColor = "#da1212";
     isReadOnly = true
   }
@@ -41,13 +44,15 @@ export function Cell({ subgridNumber, cellNumber }) {
             cellCol: col
           })
         }
-        onChange={data =>
+        onChange={data => {
           dispatch({
             type: "UPDATE_CELL_SOLUTION",
             solution: data.target.value,
             cellRow: row,
             cellCol: col
           })
+          validate(dispatch,grid)
+        }
         }
       ></textarea>
     </div>

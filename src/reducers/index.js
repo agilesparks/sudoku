@@ -1,7 +1,7 @@
 import {
   getCleanGrid,
   getGridWithUpdatedSolution,
-  getGridWithToggledInitial
+  getGridWithToggledGiven
 } from "../utils/gridUtils";
 
 const sudokuRoot = 3;
@@ -25,7 +25,7 @@ export default function rootReducer(state, action) {
         return getInitialState(sudokuRoot);
       case "TOGGLE_INITIAL":
         newState = Object.assign({}, state);
-        newState.grid = getGridWithToggledInitial(
+        newState.grid = getGridWithToggledGiven(
           state.grid,
           action.cellRow,
           action.cellCol
@@ -39,6 +39,7 @@ export default function rootReducer(state, action) {
           action.cellCol,
           action.solution
         );
+        
         return newState;
       case "GET_SAVED_GAMES_LIST":
         newState = Object.assign({}, state);
