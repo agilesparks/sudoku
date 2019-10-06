@@ -28,20 +28,20 @@ describe("my tests", () => {
 
   test("can render with redux with defaults", async () => {
    
-    const { getByText, getByTestId } = render(
+    const { getByText, getByTestId, debug } = render(
       <Provider store={store}>{<App />}</Provider>
     );
 
     axiosMock.post.mockImplementationOnce(() =>
     Promise.resolve({
-      data: { data: { isValid: true } }
+      data: { data: { isValid: true, invalidityDetails: [] } }
     })
   );
    let input = getByTestId("0:0");
     fireEvent.change(input, { target: { value: "99" } });
     axiosMock.post.mockImplementationOnce(() =>
     Promise.resolve({
-      data: { data: { isValid: false } }
+      data: { data: { isValid: false, invalidityDetails: [{row: 0,col: 1}] } }
     })
   );
 
@@ -49,10 +49,11 @@ describe("my tests", () => {
    fireEvent.change(input2, { target: { value: "99" } });
     await wait(() => getByText("Not Valid"))
     expect(getByText("Not Valid")).toBeInTheDocument();
+    expect(getByTestId("0:1")).toHaveAttribute('style',"color: rgb(40, 44, 52); background-color: rgb(233, 87, 63);")
     
     axiosMock.post.mockImplementationOnce(() =>
     Promise.resolve({
-      data: { data: { isValid: true } }
+      data: { data: { isValid: true, invalidityDetails: [] } }
     })
   );
     input = getByTestId("0:1");
@@ -61,25 +62,6 @@ describe("my tests", () => {
 
    // fireEvent.click(getByText("Not Valid"));
     await wait(() => getByText("Valid"))
-    expect(getByText("Valid")).toBeTruthy();
-  });
-
-  xtest("can render with redux with defaults (2)", async () => {
-
-    const { getByText, getByTestId } = render(
-      <Provider store={store}>{<App />}</Provider>
-    );
-
-    fireEvent.click(getByText("Valid"));
-    expect(getByText("Not Valid")).toBeInTheDocument();
-
-    const input = getByTestId("0:0");
-    fireEvent.change(input, { target: { value: "99" } });
-
-    const input2 = getByTestId("0:1");
-    fireEvent.change(input2, { target: { value: "88" } });
-
-    fireEvent.click(getByText("Not Valid"));
     expect(getByText("Valid")).toBeTruthy();
   });
 

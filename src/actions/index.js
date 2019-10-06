@@ -21,7 +21,7 @@ export const setSavedGamesList = data => ({
 export const setValidationResult = data => ({
   type: "SET_VALIDATION_RESULT",
   isValid: data.isValid,
-  invalidityReason: data.invalidaityReason
+  invalidityDetails: data.invalidityDetails
 });
 
 // just a note, here, in the front end, we use the id key of our data object
@@ -58,7 +58,7 @@ export function getSavedGameListFromAPI(dispatch) {
             setValidationResult({
               type: "SET_VALIDATION_RESULT",
               isValid: res.data.data.isValid,
-              invalidityReason: res.data.data.inValidaityReason
+              invalidityDetails: res.data.data.invalidityDetails
             })
           );
         },

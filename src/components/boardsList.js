@@ -7,7 +7,7 @@ export function BoardsList() {
       <div>
         <select size="10">
           {
-            games == undefined || games.length <= 0
+            games === undefined || games.length <= 0
             ? ''
             : games.map((game) => (
               <option  key={game.id} value={game.id}>

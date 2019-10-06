@@ -24,6 +24,14 @@ export function Cell({ subgridNumber, cellNumber }) {
     textColor = "#da1212";
     isReadOnly = true
   }
+  let backgroundColor
+  if (useSelector(state => state.invalidityDetails).find((element, index, array) => {
+              return (element.row == row)&&(element.col == col)
+  }) == undefined)
+    backgroundColor = "#81b71a"
+  else
+    backgroundColor =  "#E9573F"
+          
   
 
   return (
@@ -33,7 +41,7 @@ export function Cell({ subgridNumber, cellNumber }) {
         rows="1"
         cols="4"
         maxLength="4"
-        style={{ color: textColor }}
+        style={{ color: textColor,backgroundColor : backgroundColor  }}
         value={solution}
         readOnly = {isReadOnly}
         data-testid={row + ":" + col}

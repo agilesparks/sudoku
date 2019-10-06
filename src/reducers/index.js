@@ -10,6 +10,7 @@ function getInitialState(root) {
   return {
     grid: getCleanGrid(root),
     isValid: true,
+    invalidityDetails: [],
     root: root,
     games: []
   };
@@ -48,7 +49,7 @@ export default function rootReducer(state, action) {
       case "SET_VALIDATION_RESULT":
         newState = Object.assign({}, state);
         newState.isValid = action.isValid;
-        newState.invalidityReason = action.invalidityReason;
+        newState.invalidityDetails = action.invalidityDetails;
         return newState;
       default:
         return state;
