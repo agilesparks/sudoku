@@ -24,6 +24,11 @@ export const setValidationResult = data => ({
   invalidityDetails: data.invalidityDetails
 });
 
+export const setPossibleSolutions = data => ({
+  type: "SET_POSSIBLE_SOLUTIONS",
+  possibleSolutions: data.possibleSolutions
+});
+
 // just a note, here, in the front end, we use the id key of our data object
 // in order to identify which we want to Update or delete.
 // for our back end, we use the object id assigned by MongoDB to modify
@@ -66,4 +71,22 @@ export function getSavedGameListFromAPI(dispatch) {
           console.log(error);
         }
       );
-  }
+}
+  
+export function getPossibleSolutions(dispatch,grid) {
+  axios
+    .post("http://localhost:3001/api/possibleSolutions", { grid: grid })
+    .then(
+      res => {
+        dispatch(
+          setPossibleSolutions({
+            type: "SET_POSSIBLE_SOLUTIONS",
+            possibleSolutions: res.data.data.possibleSolutions
+          })
+        );
+      },
+      error => {
+        console.log(error);
+      }
+    );
+}

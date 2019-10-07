@@ -6,33 +6,38 @@ import {
   getSolutionFromGrid,
   isGiven
 } from "../utils/gridUtils";
-import { validate } from "../actions";
+import { validate, getPossibleSolutions } from "../actions";
 
 export function Cell({ subgridNumber, cellNumber }) {
   const root = useSelector(state => state.root);
   const dispatch = useDispatch();
   const row = getCellRow(root, subgridNumber, cellNumber);
   const col = getCellCol(root, subgridNumber, cellNumber);
-  const solution = useSelector(state =>
+  const userSolution = useSelector(state =>
     getSolutionFromGrid(state.grid, row, col)
   );
-  const grid = useSelector(state => state.grid)
-   
-  let textColor = "#282c34"
-  let isReadOnly = false
+  const possibleSolution = useSelector(state => getSolutionFromGrid(state.possibleSolutions, row, col));
+  let solution = userSolution
+  if (userSolution == "" && possibleSolution.length<=4 && possibleSolution.length>=2)
+    solution = possibleSolution.substr(0 , 4)
+  const grid = useSelector(state => state.grid);
+
+  let textColor = "#282c34";
+  let isReadOnly = false;
   if (useSelector(state => isGiven(state.grid, row, col))) {
     textColor = "#da1212";
-    isReadOnly = true
+    isReadOnly = true;
   }
-  let backgroundColor
-  if (useSelector(state => state.invalidityDetails).find((element, index, array) => {
-              return (element.row == row)&&(element.col == col)
-  }) == undefined)
-    backgroundColor = "#81b71a"
-  else
-    backgroundColor =  "#E9573F"
-          
-  
+  let backgroundColor;
+  if (
+    useSelector(state => state.invalidityDetails).find(
+      (element, index, array) => {
+        return element.row == row && element.col == col;
+      }
+    ) == undefined
+  )
+    backgroundColor = "#81b71a";
+  else backgroundColor = "#E9573F";
 
   return (
     <div>
@@ -41,9 +46,9 @@ export function Cell({ subgridNumber, cellNumber }) {
         rows="1"
         cols="4"
         maxLength="4"
-        style={{ color: textColor,backgroundColor : backgroundColor  }}
+        style={{ color: textColor, backgroundColor: backgroundColor }}
         value={solution}
-        readOnly = {isReadOnly}
+        readOnly={isReadOnly}
         data-testid={row + ":" + col}
         onDoubleClick={() =>
           dispatch({
@@ -58,10 +63,11 @@ export function Cell({ subgridNumber, cellNumber }) {
             solution: data.target.value,
             cellRow: row,
             cellCol: col
-          })
-          validate(dispatch,grid)
-        }
-        }
+          });
+          validate(dispatch, grid);
+          getPossibleSolutions(dispatch, grid)
+          
+        }}
       ></textarea>
     </div>
   );
