@@ -1,5 +1,8 @@
 import axios from "axios"
 
+const myURL = process.env.ENVIRONMENT === "PRODUCTION" ? 
+"https://sudoku-react-frontend.herokuapp.com/":"http://localhost:3001"
+
 export const toggleInitial = data => ({
   type: "TOGGLE_INITIAL",
   cellRow: data.cell.row,
@@ -38,7 +41,7 @@ export const setPossibleSolutions = data => ({
 // fetch data from our data base
 export function getSavedGameListFromAPI(dispatch) {
   axios
-    .get("http://localhost:3001/api/getData")
+    .get(myURL+"/api/getData")
     .then(
       res => {
         dispatch(
@@ -56,7 +59,7 @@ export function getSavedGameListFromAPI(dispatch) {
 
   export function validate(dispatch,grid) {
     axios
-      .post("http://localhost:3001/api/validate", { grid: grid })
+      .post(myURL+"/api/validate", { grid: grid })
       .then(
         res => {
           dispatch(
@@ -75,7 +78,7 @@ export function getSavedGameListFromAPI(dispatch) {
   
 export function getPossibleSolutions(dispatch,grid) {
   axios
-    .post("http://localhost:3001/api/possibleSolutions", { grid: grid })
+    .post(myURL+"/api/possibleSolutions", { grid: grid })
     .then(
       res => {
         dispatch(
