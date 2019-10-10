@@ -26,7 +26,7 @@ describe("my tests", () => {
   );
   });
 
-  xtest("can render with redux with defaults", async () => {
+  test.skip("can render with redux with defaults", async () => {
    
     const { getByText, getByTestId, debug } = render(
       <Provider store={store}>{<App />}</Provider>
@@ -65,7 +65,7 @@ describe("my tests", () => {
     expect(getByText("Valid")).toBeTruthy();
   });
 
-  xtest("get list of games", async () => {
+  test.skip("get list of games", async () => {
 
     
 
