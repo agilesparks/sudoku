@@ -1,4 +1,4 @@
-/*import React from "react";
+import React from "react";
 import { render, fireEvent, waitForElement, wait } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
@@ -12,10 +12,10 @@ import rootReducer from "../../reducers";
 //import App from "../../components/app";
 //import BoardsManager from "../../components/boardsManager";
 
-const store = createStore(rootReducer);*/
+const store = createStore(rootReducer);
 
 
-/*describe("my tests", () => {
+describe("my tests", () => {
 
   beforeEach(() => {
     store.dispatch({ type: 'RESET_STORE' })
@@ -78,4 +78,4 @@ const store = createStore(rootReducer);*/
   });
     
     
-});*/
+});
