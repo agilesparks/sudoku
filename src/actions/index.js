@@ -1,5 +1,9 @@
 import axios from "axios"
 
+console.log(process.env)
+console.log('*****')
+console.log(process.env.ENVIRONMENT)
+console.log('@@@@@*****')
 const myURL = process.env.ENVIRONMENT === "PRODUCTION" ? 
 "https://sudoku-react-frontend.herokuapp.com/":"http://localhost:3001"
 

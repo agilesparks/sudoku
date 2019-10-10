@@ -18,7 +18,7 @@ export function Cell({ subgridNumber, cellNumber }) {
   );
   const possibleSolution = useSelector(state => getSolutionFromGrid(state.possibleSolutions, row, col));
   let solution = userSolution
-  if (userSolution == "" && possibleSolution.length<=4 && possibleSolution.length>=2)
+  if (userSolution === "" && possibleSolution.length<=4 && possibleSolution.length>=2)
     solution = possibleSolution.substr(0 , 4)
   const grid = useSelector(state => state.grid);
 
@@ -32,9 +32,9 @@ export function Cell({ subgridNumber, cellNumber }) {
   if (
     useSelector(state => state.invalidityDetails).find(
       (element, index, array) => {
-        return element.row == row && element.col == col;
+        return element.row === row && element.col === col;
       }
-    ) == undefined
+    ) === undefined
   )
     backgroundColor = "#81b71a";
   else backgroundColor = "#E9573F";
