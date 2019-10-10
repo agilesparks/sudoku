@@ -1,5 +1,7 @@
 import axios from "axios"
 
+require('dotenv').config()
+
 console.log(process.env)
 console.log('*****')
 console.log(process.env.ENVIRONMENT)
