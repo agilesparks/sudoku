@@ -9,8 +9,8 @@ import { Provider } from "react-redux";
 
 import rootReducer from "../../reducers";
 
-import App from "../../components/app";
-import BoardsManager from "../../components/boardsManager";
+//import App from "../../components/app";
+//import BoardsManager from "../../components/boardsManager";
 
 const store = createStore(rootReducer);
 
