@@ -26,7 +26,7 @@ describe("my tests", () => {
   );
   });
 
-  test("can render with redux with defaults", async () => {
+  xtest("can render with redux with defaults", async () => {
    
     const { getByText, getByTestId, debug } = render(
       <Provider store={store}>{<App />}</Provider>
