@@ -15,7 +15,7 @@ import rootReducer from "../../reducers";
 const store = createStore(rootReducer);
 
 
-describe("my tests", () => {
+/*describe("my tests", () => {
 
   beforeEach(() => {
     store.dispatch({ type: 'RESET_STORE' })
@@ -78,4 +78,4 @@ describe("my tests", () => {
   });
     
     
-});
+});*/
