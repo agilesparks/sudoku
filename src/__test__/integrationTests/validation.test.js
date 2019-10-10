@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import { render, fireEvent, waitForElement, wait } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
@@ -12,7 +12,7 @@ import rootReducer from "../../reducers";
 //import App from "../../components/app";
 //import BoardsManager from "../../components/boardsManager";
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer);*/
 
 
 /*describe("my tests", () => {
