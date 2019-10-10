@@ -2,11 +2,7 @@ import axios from "axios"
 
 require('dotenv').config()
 
-console.log(process.env)
-console.log('*****')
-console.log(process.env.ENVIRONMENT)
-console.log('@@@@@*****')
-const myURL = process.env.ENVIRONMENT === "PRODUCTION" ? 
+const myURL = process.env.REACT_APP_ENVIRONMENT === "PRODUCTION" ? 
 "https://sudoku-react-frontend.herokuapp.com/":"http://localhost:3001"
 
 export const toggleInitial = data => ({
