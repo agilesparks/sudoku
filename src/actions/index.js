@@ -1,7 +1,5 @@
 import axios from "axios"
 
-require('dotenv').config()
-
 const myURL = process.env.REACT_APP_ENVIRONMENT === "PRODUCTION" ? 
 "https://my-sudoku-backend.herokuapp.com":"http://localhost:3001"
 
