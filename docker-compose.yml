@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+#setup backend
+
+  server:
+    build: ../backend
+    ports:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+
+#setup frontend
+
+  frontend:
+    build: .
+    ports:
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
+
