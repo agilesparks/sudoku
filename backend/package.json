@@ -5,7 +5,7 @@
   "scripts": {
     "start": "babel-node ./bin/www",
     "test": "jest --watchAll",
-    "jenkinsTest": "jest"
+    "testci": "jest"
   },
   "dependencies": {
     "@babel/cli": "^7.6.4",
