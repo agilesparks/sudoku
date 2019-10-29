@@ -5,14 +5,14 @@ services:
 #setup backend
 
   server:
-    build: ../backend
+    build: ./backend
     ports:
       - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
 
 #setup frontend
 
   frontend:
-    build: .
+    build: ./frontend
     ports:
       - ${REACT_APP_PORT}:${REACT_APP_PORT}
 

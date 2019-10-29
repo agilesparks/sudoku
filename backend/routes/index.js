@@ -1,4 +1,4 @@
-import {  getValidationCheck } from "../modules/gridUtils"
+import {getValidationCheck} from "../modules/gridUtils"
 
 import {getPossibleSolutionsGrid} from "../modules/solver"
 
