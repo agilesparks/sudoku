@@ -3,7 +3,6 @@ RUN mkdir -p /app/backend
 WORKDIR /app/backend
 
 COPY package.json .
-COPY package-lock.json .
 
 RUN npm install
 

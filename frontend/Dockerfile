@@ -3,7 +3,6 @@ RUN mkdir -p /app/frontend
 WORKDIR /app/frontend
 
 COPY package.json .
-COPY package-lock.json .
 
 RUN npm install
 
