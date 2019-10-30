@@ -7,11 +7,11 @@ services:
   server:
     build: ./backend
     ports: 
-        - "${APP_SERVER_PORT}:${APP_SERVER_PORT}"
+        - "3001:3002"
 
 #setup frontend
 
   frontend:
     build: ./frontend
     ports: 
-        - "${REACT_APP_PORT}:${REACT_APP_PORT}"
+        - "3000:3003"
