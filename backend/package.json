@@ -6,8 +6,7 @@
     "start": "nodemon --exec babel-node ./bin/www",
     "build": "babel src --out-dir",
     "serve": "node dist/server.js",
-    "test": "jest --watchAll",
-    "testci": "jest"
+    "test": "jest"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

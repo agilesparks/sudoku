@@ -15,3 +15,10 @@ services:
     build: ./frontend
     ports: 
         - "${REACT_APP_PORT}:${REACT_APP_PORT}"
+ #setup UT CI Backend
+
+  utcibackend:
+    build: ./backend
+    environment:
+      CI: true
+    command: ["npm", "test"]
