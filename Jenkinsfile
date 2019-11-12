@@ -10,11 +10,18 @@ pipeline {
                 
             }
         }
-        stage('Test') {
+        stage('Tests') {
             steps {
-                echo 'Testing..'
+                echo 'Unit Testing..'
                 sh 'docker run --rm -e "CI=true" --entrypoint "npm" backendforjenkins test'
-                sh 'docker run --rm -e "CI=true" --entrypoint "npm" frontendforjenkins test'           }
+                sh 'docker run --rm -e "CI=true" --entrypoint "npm" frontendforjenkins test'
+            }
+             steps {
+                echo 'E2E Testing.. (Cypress)'
+                sh 'docker run --rm -e "PORT=4000"  backendforjenkins'
+                sh 'docker run --rm -e "PORT=4001" -e "BACKEND_PORT=4000" frontendforjenkins'
+                sh 'docker run -it --network="host" -v frontend/cypress -w /cypress cypress/included:3.2.0"
+            }
         }
         stage('Deploy') {
             steps {

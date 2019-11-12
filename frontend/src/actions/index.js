@@ -3,6 +3,18 @@ import axios from "axios"
 const myURL = process.env.REACT_APP_ENVIRONMENT === "PRODUCTION" ? 
 "https://my-sudoku-backend.herokuapp.com":"http://localhost:3001"
 
+const myURL
+if (process.env.REACT_APP_ENVIRONMENT === "PRODUCTION"){
+  myURL = "https://my-sudoku-backend.herokuapp.com"
+}
+else {
+  myURL = "http://localhost:"
+  if (process.env.BACKEND_PORT!=undefined)
+  myURL = myURL+process.env.BACKEND_PORT
+  else
+  myURL = myURL+"3001"
+}
+
 export const toggleInitial = data => ({
   type: "TOGGLE_INITIAL",
   cellRow: data.cell.row,
