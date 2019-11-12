@@ -20,7 +20,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 dir("backend") {
-                    sh "heroku container:push web"
+                    sh "heroku container:push --app my-sudoku-backend web"
                 }
             }
         }
