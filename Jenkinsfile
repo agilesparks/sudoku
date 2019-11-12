@@ -10,12 +10,14 @@ pipeline {
                 
             }
         }
-        stage('Tests') {
+        stage('Unit Tests') {
             steps {
                 echo 'Unit Testing..'
                 sh 'docker run --rm -e "CI=true" --entrypoint "npm" backendforjenkins test'
                 sh 'docker run --rm -e "CI=true" --entrypoint "npm" frontendforjenkins test'
             }
+        }
+        stage('E2E Tests') {
              steps {
                 echo 'E2E Testing.. (Cypress)'
                 sh 'docker run --rm -e "PORT=4000"  backendforjenkins'
