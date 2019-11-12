@@ -25,8 +25,8 @@ pipeline {
                     sh "heroku container:release --app my-sudoku-backend web"
                 }
                 dir("frontend") {
-                    sh "heroku container:push --app my-sudoku-frontend web"
-                    sh "heroku container:release --app my-sudoku-frontend web"
+                    sh "heroku container:push --app sudoku-react-frontend web"
+                    sh "heroku container:release --app sudoku-react-frontend web"
                 }
             }
         }
