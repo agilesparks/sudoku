@@ -22,6 +22,11 @@ pipeline {
                 sh "heroku container:login"
                 dir("backend") {
                     sh "heroku container:push --app my-sudoku-backend web"
+                    sh "heroku container:release"
+                }
+                dir("frontend") {
+                    sh "heroku container:push --app my-sudoku-frontend web"
+                    sh "heroku container:release"
                 }
             }
         }
