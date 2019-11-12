@@ -19,7 +19,7 @@ describe("validation tests", () => {
         grid = getGridWithUpdatedSolution(grid, 0, 1, "3");
 
 
-        expect(getPossibleSolutions(grid,1,1)).toBe('13')
+        expect(getPossibleSolutions(grid,1,1)).toBe('14')
     });
 
     test("get possible solutions II", () => {
