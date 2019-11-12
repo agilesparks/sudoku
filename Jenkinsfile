@@ -4,6 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                dir("folder") {
+                    sh "pwd"
+                }
                 echo 'Building...'
                 sh 'docker build -t backendforjenkins backend/.'
                 sh 'docker build -t frontendforjenkins frontend/.'
