@@ -22,7 +22,7 @@ pipeline {
                 echo 'E2E Testing.. (Cypress)'
                 sh 'docker run --rm -e "PORT=4000" -d --name e2ebackend backendforjenkins'
                 sh 'docker run --rm -e "PORT=4001" -d --name e2efrontend -e "BACKEND_PORT=4000" frontendforjenkins'
-                sh 'docker run --network="host" -v frontend/cypress -w /cypress cypress/included:3.2.0'
+                sh 'docker run  -v $PWD/frontend:/e2e -w /e2e cypress/included:3.2.0'
                 sh 'docker stop e2ebackend'
                  sh 'docker stop e2efrontend'
             }
