@@ -20,7 +20,7 @@ pipeline {
                 echo 'E2E Testing.. (Cypress)'
                 sh 'docker run --rm -e "PORT=4000"  backendforjenkins'
                 sh 'docker run --rm -e "PORT=4001" -e "BACKEND_PORT=4000" frontendforjenkins'
-                sh 'docker run -it --network="host" -v frontend/cypress -w /cypress cypress/included:3.2.0"
+                sh 'docker run -it --network="host" -v frontend/cypress -w /cypress cypress/included:3.2.0'
             }
         }
         stage('Deploy') {
