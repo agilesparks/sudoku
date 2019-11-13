@@ -20,11 +20,13 @@ pipeline {
         stage('E2E Tests') {
              steps {
                 echo 'E2E Testing.. (Cypress)'
+                sh 'docker stop e2efrontend'
+                sh 'docker stop e2ebackend'
                 sh 'docker run --rm -p 4001:4001 -e "PORT=4001" -d --name e2ebackend backendforjenkins'
                 sh 'docker run --rm -p 4000:4000 -e "PORT=4000" -d --name e2efrontend -e "BACKEND_PORT=4001" frontendforjenkins'
                 sh 'docker run  -e "CYPRESS_baseUrl=http://localhost:4000/" -v $PWD/frontend:/e2e -w /e2e cypress/included:3.2.0'
                 sh 'docker stop e2ebackend'
-                 sh 'docker stop e2efrontend'
+                sh 'docker stop e2efrontend'
             }
         }
         stage('Deploy') {
