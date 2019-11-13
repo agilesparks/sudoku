@@ -2,7 +2,9 @@
 
 context('Window', () => {
     beforeEach(() => {
-      cy.visit()
+     // cy.visit(Cypress.env('BASE_URL'))
+    // cy.log(Cypress.env('BASE_URL'))
+     cy.visit(Cypress.env('BASE_URL'))
     })
   
     it('cy.window() - get the global window object', () => {

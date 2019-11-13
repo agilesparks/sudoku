@@ -24,7 +24,7 @@ pipeline {
                 sh 'docker stop e2ebackend || true'
                 sh 'docker run --rm -p 4001:4001 -e "PORT=4001" -d --name e2ebackend backendforjenkins'
                 sh 'docker run --rm -p 4000:4000 -e "PORT=4000" -d --name e2efrontend -e "BACKEND_PORT=4001" frontendforjenkins'
-                sh 'docker run --network="host" -e "CYPRESS_baseUrl=http://localhost:4000/" -v $PWD/frontend:/e2e -w /e2e cypress/included:3.2.0'
+                sh 'docker run --network="host"  -v $PWD/frontend:/e2e -w /e2e cypress/included:3.2.0 --env BASE_URL=http://localhost:4000/'
                 sh 'docker stop e2ebackend'
                 sh 'docker stop e2efrontend'
             }
