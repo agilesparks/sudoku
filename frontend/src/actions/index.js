@@ -8,8 +8,8 @@ if (process.env.REACT_APP_ENVIRONMENT === "PRODUCTION"){
 }
 else {
   myURL = "http://localhost:"
-  if (process.env.BACKEND_PORT!==undefined)
-  myURL = myURL+process.env.BACKEND_PORT
+  if (process.env.REACT_APP_BACKEND_PORT!==undefined)
+  myURL = myURL+process.env.REACT_APP_BACKEND_PORT
   else
   myURL = myURL+"3001"
 }
