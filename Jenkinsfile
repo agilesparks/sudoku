@@ -32,9 +32,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh '(
-                    echo "$HEROKU_CREDENTIALS_EMAIL" 
-                    echo "$HEROKU_CREDENTIALS_PASSWORD"
+                sh '(\
+                    echo "$HEROKU_CREDENTIALS_EMAIL" \
+                    echo "$HEROKU_CREDENTIALS_PASSWORD"\
                 ) | heroku login'
                 sh "heroku container:login"
                 dir("backend") {
