@@ -32,6 +32,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                sh '(
+                    echo "$HEROKU_CREDENTIALS_EMAIL" 
+                    echo "$HEROKU_CREDENTIALS_PASSWORD"
+                ) | heroku login'
                 sh "heroku container:login"
                 dir("backend") {
                     sh "heroku container:push --app my-sudoku-backend web"
