@@ -11,6 +11,8 @@ backend/dist
 
 # testing
 /coverage
+frontend/cypress/screenshots
+frontend/cypress/videos
 
 # production
 /build
