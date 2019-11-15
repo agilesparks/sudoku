@@ -8,7 +8,7 @@ var cors = require('cors')
 var express = require('express');
 var router = express.Router();
 
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 const Data = require('./data');
 
 const dbRoute =
@@ -31,7 +31,7 @@ router.get('/api/getData', (req, res) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
-});
+});*/
 
 var corsOptions = {
   origin: '*',
