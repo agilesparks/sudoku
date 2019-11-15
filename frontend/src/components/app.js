@@ -7,10 +7,10 @@ export default function App() {
   return (
     <div>
       <div className="flexGrid" >
-      <div className="flexColumn" >
+   {/*    <div className="flexColumn" >
           <BoardsManager />
         </div>
-        <div className="flexColumn" >
+ */}        <div className="flexColumn" >
           <Grid />
           <ValidateButton />
         </div>
