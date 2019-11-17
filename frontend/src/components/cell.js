@@ -18,7 +18,7 @@ export function Cell({ subgridNumber, cellNumber }) {
   );
   const possibleSolution = useSelector(state => getSolutionFromGrid(state.possibleSolutions, row, col));
   let solution = userSolution
-  if (userSolution === "" && possibleSolution.length<=4 && possibleSolution.length>=2)
+  if (userSolution === "" && possibleSolution.length<=4 && possibleSolution.length>=1)
     solution = possibleSolution.substr(0 , 4)
   const grid = useSelector(state => state.grid);
 
