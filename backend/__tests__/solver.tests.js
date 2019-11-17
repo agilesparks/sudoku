@@ -47,6 +47,17 @@ describe("validation tests", () => {
 
         expect(getPossibleSolutions(grid,0,1)).toBe('1234')
     });
+
+    test("no possible solutions", () => {
+
+        grid = getGridWithUpdatedSolution(grid,0, 0, "2");
+        grid = getGridWithUpdatedSolution(grid, 0, 1, "3");
+        grid = getGridWithUpdatedSolution(grid, 1, 1, "4");
+        grid = getGridWithUpdatedSolution(grid, 2, 0, "1");
+
+
+        expect(getPossibleSolutions(grid,1,0)).toBe('')
+    });
     
     test("get possible solutions grid", () => {
 
