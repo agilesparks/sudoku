@@ -26,6 +26,9 @@ context('Window', () => {
       cy.get('[data-testid="4:3"]').should('to.have.value', '89')
       cy.get('[data-testid="4:3"]').type('{backspace}')
       cy.get('[data-testid="5:3"]').should('to.have.value', '9')
+      cy.get('[data-testid="5:2"]').type('9')
+      cy.get('[data-testid="5:3"]').should('have.css', 'background-color')
+       .and('eq', 'rgb(233, 87, 63)')
     })
   
    
