@@ -77,6 +77,21 @@ describe("validation tests", () => {
     expect(getValidationCheck(grid).invalidityDetails.length).toBe(4)
   });
 
+  test("one cell has no possible digit", () => {
+    grid = getGridWithUpdatedSolution(grid,0, 0, "2");
+    grid = getGridWithUpdatedSolution(grid, 0, 1, "3");
+    grid = getGridWithUpdatedSolution(grid, 1, 1, "4");
+    grid = getGridWithUpdatedSolution(grid, 2, 0, "1");
+
+    
+    expect(getValidationCheck(grid).isValid).toBe(false)
+    expect(getValidationCheck(grid).invalidityDetails.length).toBe(1)
+    expect(getValidationCheck(grid).invalidityDetails).toStrictEqual([{
+      row: 1,
+      col: 0,
+      solution: ""}])
+    });
+
   test("valid solution", () => {
     grid = getGridWithUpdatedSolution(grid, 1, 1, "2");
     grid = getGridWithUpdatedSolution(grid, 3, 1, "3");

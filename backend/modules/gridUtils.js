@@ -1,3 +1,7 @@
+import {
+  getPossibleSolutions
+} from "./solver";
+
 export function getSolutionFromGrid(grid, row, col) {
   return grid[row][col].solution;
 }
@@ -27,7 +31,7 @@ export function getCleanGrid(root) {
 }
 
 function getGridCopy(grid) {
-  return grid.map(function(row) {
+  return grid.map(function (row) {
     return row.slice();
   });
 }
@@ -59,23 +63,23 @@ export function getDuplicates(cellGroup) {
 export function getRowNoSplitSolution(grid, row) {
   let returnedRow = [];
   for (let col = 0; col < grid.length; col++)
-  returnedRow.push({
-    row: row,
-    col: col,
-    solution:  getSolutionFromGrid(grid, row, col)
-  });
-  return returnedRow; 
+    returnedRow.push({
+      row: row,
+      col: col,
+      solution: getSolutionFromGrid(grid, row, col)
+    });
+  return returnedRow;
 }
 
 export function getColumnNoSplitSolution(grid, col) {
   let returnedColumn = [];
   for (let row = 0; row < grid.length; row++)
-  returnedColumn.push({
-    row: row,
-    col: col,
-    solution:  getSolutionFromGrid(grid, row, col)
-  });
-  return returnedColumn; 
+    returnedColumn.push({
+      row: row,
+      col: col,
+      solution: getSolutionFromGrid(grid, row, col)
+    });
+  return returnedColumn;
 }
 
 export function getSubgridNoSplitSolution(grid, subgrid, root) {
@@ -90,11 +94,11 @@ export function getSubgridNoSplitSolution(grid, subgrid, root) {
       col < (subgrid % root) * root + root;
       col++
     ) {
-        returnedSubgrid.push({
-          row: row,
-          col: col,
-          solution: getSolutionFromGrid(grid, row, col)
-        });
+      returnedSubgrid.push({
+        row: row,
+        col: col,
+        solution: getSolutionFromGrid(grid, row, col)
+      });
     }
   return returnedSubgrid;
 }
@@ -162,11 +166,10 @@ export function getSubgrid(grid, subgrid, root) {
   return returnedSubgrid;
 }
 
-export function getValidationCheck(grid) {
+function getDuplicatesValidation(grid) {
   let duplicates = [];
   for (let row = 0; row < grid.length; row++)
     duplicates = duplicates.concat(getDuplicates(getRow(grid, row)));
-
   for (let col = 0; col < grid.length; col++)
     duplicates = duplicates.concat(getDuplicates(getColumn(grid, col)));
 
@@ -175,9 +178,32 @@ export function getValidationCheck(grid) {
     duplicates = duplicates.concat(
       getDuplicates(getSubgrid(grid, subgrid, root))
     );
-
-  return {
-    isValid: duplicates.length == 0 ? true : false,
-    invalidityDetails: duplicates
-  };
+  return duplicates
 }
+
+export function getValidationCheck(grid) {
+
+  let duplicates = getDuplicatesValidation(grid)
+  if (duplicates.length != 0)
+    return {
+      isValid: duplicates.length == 0 ? true : false,
+      invalidityDetails: duplicates
+    };
+  else {
+    let noSolutions = []
+    for (let row = 0; row < grid.length; row++)
+      for (let col = 0; col < grid.length; col++) {
+        if (getSolutionFromGrid(grid, row, col)==="")
+        if (getPossibleSolutions(grid, row, col) === "")
+          noSolutions.push({
+            row: row,
+            col: col,
+            solution: ""
+          })
+        }
+    return {
+      isValid: noSolutions.length == 0 ? true : false,
+      invalidityDetails: noSolutions
+        }
+      }
+  }
