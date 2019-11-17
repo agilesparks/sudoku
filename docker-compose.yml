@@ -8,6 +8,8 @@ services:
     build: ./backend
     ports: 
         - "${APP_SERVER_PORT}:${APP_SERVER_PORT}"
+    environment:
+        - NODE_ENV=development
 
 #setup frontend
 
@@ -17,3 +19,4 @@ services:
         - "${REACT_APP_PORT}:${REACT_APP_PORT}"
     environment:
         - REACT_APP_BACKEND_PORT=3001 
+        - NODE_ENV=development

@@ -184,26 +184,26 @@ function getDuplicatesValidation(grid) {
 export function getValidationCheck(grid) {
 
   let duplicates = getDuplicatesValidation(grid)
-  if (duplicates.length != 0)
-    return {
-      isValid: duplicates.length == 0 ? true : false,
-      invalidityDetails: duplicates
-    };
-  else {
-    let noSolutions = []
-    for (let row = 0; row < grid.length; row++)
-      for (let col = 0; col < grid.length; col++) {
-        if (getSolutionFromGrid(grid, row, col)==="")
+  /* if (duplicates.length != 0)
+     return {
+       isValid: duplicates.length == 0 ? true : false,
+       invalidityDetails: duplicates
+     };
+   else {*/
+  let noSolutions = []
+  for (let row = 0; row < grid.length; row++)
+    for (let col = 0; col < grid.length; col++) {
+      if (getSolutionFromGrid(grid, row, col) === "")
         if (getPossibleSolutions(grid, row, col) === "")
           noSolutions.push({
             row: row,
             col: col,
             solution: ""
           })
-        }
-    return {
-      isValid: noSolutions.length == 0 ? true : false,
-      invalidityDetails: noSolutions
-        }
-      }
+    }
+  return {
+    isValid: (noSolutions.length == 0 && duplicates.length ==0) ? true : false,
+    invalidityDetails: noSolutions.concat(duplicates)
   }
+  //  }
+}
