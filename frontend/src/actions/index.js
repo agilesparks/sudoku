@@ -1,17 +1,18 @@
 import axios from "axios"
+import { functionExpression } from "@babel/types"
 
-let myURL=""
+let myURL = ""
 
 
-if (process.env.REACT_APP_ENVIRONMENT === "PRODUCTION"){
+if (process.env.REACT_APP_ENVIRONMENT === "PRODUCTION") {
   myURL = "https://my-sudoku-backend.herokuapp.com"
 }
 else {
   myURL = "http://localhost:"
-  if (process.env.REACT_APP_BACKEND_PORT!==undefined)
-  myURL = myURL+process.env.REACT_APP_BACKEND_PORT
+  if (process.env.REACT_APP_BACKEND_PORT !== undefined)
+    myURL = myURL + process.env.REACT_APP_BACKEND_PORT
   else
-  myURL = myURL+"3001"
+    myURL = myURL + "3001"
 }
 
 
@@ -53,7 +54,7 @@ export const setPossibleSolutions = data => ({
 // fetch data from our data base
 export function getSavedGameListFromAPI(dispatch) {
   axios
-    .get(myURL+"/api/getData")
+    .get(myURL + "/api/getData")
     .then(
       res => {
         dispatch(
@@ -69,28 +70,37 @@ export function getSavedGameListFromAPI(dispatch) {
     );
 }
 
-  export function validate(dispatch,grid) {
-    axios
-      .post(myURL+"/api/validate", { grid: grid })
-      .then(
-        res => {
-          dispatch(
-            setValidationResult({
-              type: "SET_VALIDATION_RESULT",
-              isValid: res.data.data.isValid,
-              invalidityDetails: res.data.data.invalidityDetails
-            })
-          );
-        },
-        error => {
-          console.log(error);
-        }
-      );
+export function validateAndGetPossibleSolutions() {
+  return internalValidateAndGetPossibleSolutions
 }
-  
-export function getPossibleSolutions(dispatch,grid) {
+
+function internalValidateAndGetPossibleSolutions(dispatch, getState) {
+  validate(dispatch, getState)
+  getPossibleSolutions(dispatch, getState)
+}
+
+function validate(dispatch, getState) {
   axios
-    .post(myURL+"/api/possibleSolutions", { grid: grid })
+    .post(myURL + "/api/validate", { grid: getState().grid })
+    .then(
+      res => {
+        dispatch(
+          setValidationResult({
+            type: "SET_VALIDATION_RESULT",
+            isValid: res.data.data.isValid,
+            invalidityDetails: res.data.data.invalidityDetails
+          })
+        );
+      },
+      error => {
+        console.log(error);
+      }
+    )
+}
+
+function getPossibleSolutions(dispatch, getState) {
+  axios
+    .post(myURL + "/api/possibleSolutions", { grid: getState().grid })
     .then(
       res => {
         dispatch(

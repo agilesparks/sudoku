@@ -1,36 +1,22 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getCellRow,
-  getCellCol,
-  getSolutionFromGrid,
-  isGiven
-} from "../utils/gridUtils";
-import { validate, getPossibleSolutions } from "../actions";
+import { validateAndGetPossibleSolutions } from "../actions";
 
-export function Cell({ subgridNumber, cellNumber }) {
-  const root = useSelector(state => state.root);
-  const dispatch = useDispatch();
-  const row = getCellRow(root, subgridNumber, cellNumber);
-  const col = getCellCol(root, subgridNumber, cellNumber);
-  const userSolution = useSelector(state =>
-    getSolutionFromGrid(state.grid, row, col)
-  );
-  const possibleSolution = useSelector(state => getSolutionFromGrid(state.possibleSolutions, row, col));
+
+
+export function Cell({ row, col, dispatch, userSolution, possibleSolution, grid, invalidityDetails, isGiven}) {
   let solution = userSolution
   if (userSolution === "" && possibleSolution.length<=4 && possibleSolution.length>=1)
     solution = possibleSolution.substr(0 , 4)
-  const grid = useSelector(state => state.grid);
 
   let textColor = "#282c34";
   let isReadOnly = false;
-  if (useSelector(state => isGiven(state.grid, row, col))) {
+  if (isGiven) {
     textColor = "#da1212";
     isReadOnly = true;
   }
   let backgroundColor;
   if (
-    useSelector(state => state.invalidityDetails).find(
+    invalidityDetails.find(
       (element, index, array) => {
         return element.row === row && element.col === col;
       }
@@ -64,8 +50,7 @@ export function Cell({ subgridNumber, cellNumber }) {
             cellRow: row,
             cellCol: col
           });
-          validate(dispatch, grid);
-          getPossibleSolutions(dispatch, grid)
+          dispatch(validateAndGetPossibleSolutions())
           
         }}
       ></textarea>

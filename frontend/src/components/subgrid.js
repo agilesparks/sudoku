@@ -1,5 +1,5 @@
 import React from "react";
-import { Cell } from "./cell";
+import { CellContainer } from "./cellContainer";
 import { useSelector } from "react-redux";
 
 
@@ -7,7 +7,7 @@ function getOneSubgridRow(root, subgridNumber,subgridRow) {
   let myCols = [];
   for (let subgridCol = 0; subgridCol < root; subgridCol++) {
     let cellNumber = subgridRow * root + subgridCol
-    myCols.push(<Cell subgridNumber={subgridNumber} key={cellNumber} cellNumber={cellNumber} />);
+    myCols.push(<CellContainer subgridNumber={subgridNumber} key={cellNumber} cellNumber={cellNumber} />);
   }
   return <div className="flexRow" key={subgridNumber*root+subgridRow}>{myCols}</div>;
 }

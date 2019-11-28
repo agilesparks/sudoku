@@ -1,7 +1,5 @@
 import React from "react";
 import Grid from "./grid";
-import { ValidateButton } from "./validateButton";
-import BoardsManager from "./boardsManager";
 
 export default function App() {
   return (
@@ -12,7 +10,6 @@ export default function App() {
         </div>
  */}        <div className="flexColumn" >
           <Grid />
-          <ValidateButton />
         </div>
       </div>
     </div>
