@@ -26,7 +26,7 @@ export default function rootReducer(state, action) {
     let newState;
     switch (action.type) {
       case "RESET_STORE":
-        return getInitialState(sudokuRoot);
+        return getInitialState(action.root );
       case "TOGGLE_INITIAL":
         newState = Object.assign({}, state);
         newState.grid = getGridWithToggledGiven(

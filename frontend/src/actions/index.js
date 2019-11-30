@@ -15,6 +15,11 @@ else {
 }
 
 
+export const resetStore = (root) => ({
+  type: "RESET_STORE",
+  root: root
+});
+
 export const toggleInitial = (row, col) => ({
   type: "TOGGLE_INITIAL",
   cellRow: row,
@@ -55,6 +60,7 @@ function validate(dispatch, getState) {
     .post(myURL + "/api/validate", { grid: getState().grid })
     .then(
       res => {
+       
         dispatch(
           setValidationResult(res.data.data.isValid, res.data.data.invalidityDetails)
         );
@@ -70,6 +76,7 @@ function getPossibleSolutions(dispatch, getState) {
     .post(myURL + "/api/possibleSolutions", { grid: getState().grid })
     .then(
       res => {
+        console.log(res.data.data.possibleSolutions)
         dispatch(setPossibleSolutions(res.data.data.possibleSolutions));
       },
       error => {
