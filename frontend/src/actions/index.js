@@ -26,7 +26,7 @@ export const toggleInitial = (row, col) => ({
   cellCol: col
 });
 
-export const updateCellSolution = (solution,row,col) => ({
+export const updateCellSolution = (solution, row, col) => ({
   type: "UPDATE_CELL_SOLUTION",
   solution: solution,
   cellRow: row,
@@ -46,41 +46,42 @@ export const setPossibleSolutions = possibleSolutions => ({
 
 
 
-export function validateAndGetPossibleSolutions() {
-  return internalValidateAndGetPossibleSolutions
+export function updateCellSolutionAndValidate(solution,row,col,dispatch) {
+  dispatch(updateCellSolution(solution,row,col))
+  dispatch(validate())
+  dispatch(getPossibleSolutions())
 }
 
-function internalValidateAndGetPossibleSolutions(dispatch, getState) {
-  validate(dispatch, getState)
-  getPossibleSolutions(dispatch, getState)
+export function validate() {
+  return (dispatch, getState) => {
+    axios
+      .post(myURL + "/api/validate", { grid: getState().grid })
+      .then(
+        res => {
+          dispatch(
+            setValidationResult(res.data.data.isValid, res.data.data.invalidityDetails)
+          )
+        },
+        error => {
+          console.log(error);
+        }
+      )
+      return Promise.resolve()
+  }
 }
 
-function validate(dispatch, getState) {
-  axios
-    .post(myURL + "/api/validate", { grid: getState().grid })
-    .then(
-      res => {
-       
-        dispatch(
-          setValidationResult(res.data.data.isValid, res.data.data.invalidityDetails)
-        );
-      },
-      error => {
-        console.log(error);
-      }
-    )
-}
-
-function getPossibleSolutions(dispatch, getState) {
-  axios
-    .post(myURL + "/api/possibleSolutions", { grid: getState().grid })
-    .then(
-      res => {
-        console.log(res.data.data.possibleSolutions)
-        dispatch(setPossibleSolutions(res.data.data.possibleSolutions));
-      },
-      error => {
-        console.log(error);
-      }
-    );
+export function getPossibleSolutions() {
+  return (dispatch, getState) => {
+    axios
+      .post(myURL + "/api/possibleSolutions", { grid: getState().grid })
+      .then(
+        res => {
+          dispatch(setPossibleSolutions(res.data.data.possibleSolutions));
+        },
+        error => {
+          console.log(error);
+        }
+      )
+      return Promise.resolve()
+  }
 }

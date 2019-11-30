@@ -1,5 +1,5 @@
 import React from "react";
-import { validateAndGetPossibleSolutions, toggleInitial, updateCellSolution } from "../actions";
+import { updateCellSolutionAndValidate, toggleInitial } from "../actions";
 
 
 
@@ -40,8 +40,7 @@ export function Cell({ row, col, dispatch, userSolution, possibleSolution, inval
           dispatch(toggleInitial(row,col))
         }
         onChange={data => {
-          dispatch(updateCellSolution(data.target.value,row,col))
-          dispatch(validateAndGetPossibleSolutions())
+          updateCellSolutionAndValidate(data.target.value,row,col,dispatch)
           
         }}
       ></textarea>
