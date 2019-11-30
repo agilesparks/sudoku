@@ -14,6 +14,14 @@ export function isGiven(grid, row, col) {
     return grid[row][col].given
 }
 
+export function isValid(invalidityDetails,row,col){
+    return (invalidityDetails.find(
+        (element, index, array) => {
+          return element.row === row && element.col === col;
+        }
+      ) === undefined)
+}
+
 export function getCleanGrid(root) {
     let grid = [];
   

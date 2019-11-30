@@ -3,10 +3,10 @@ import { updateCellSolutionAndValidate, toggleInitial } from "../actions";
 
 
 
-export function Cell({ row, col, dispatch, userSolution, possibleSolution, invalidityDetails, isGiven}) {
+export function Cell({ row, col, dispatch, userSolution, possibleSolution, isValid, isGiven }) {
   let solution = userSolution
-  if (userSolution === "" && possibleSolution.length<=4 && possibleSolution.length>=1)
-    solution = possibleSolution.substr(0 , 4)
+  if (userSolution === "" && possibleSolution.length <= 4 && possibleSolution.length >= 1)
+    solution = possibleSolution.substr(0, 4)
 
   let textColor = "#282c34";
   let isReadOnly = false;
@@ -15,15 +15,10 @@ export function Cell({ row, col, dispatch, userSolution, possibleSolution, inval
     isReadOnly = true;
   }
   let backgroundColor;
-  if (
-    invalidityDetails.find(
-      (element, index, array) => {
-        return element.row === row && element.col === col;
-      }
-    ) === undefined
-  )
+  if (isValid)
     backgroundColor = "#81b71a";
-  else backgroundColor = "#E9573F";
+  else
+    backgroundColor = "#E9573F";
 
   return (
     <div>
@@ -37,11 +32,11 @@ export function Cell({ row, col, dispatch, userSolution, possibleSolution, inval
         readOnly={isReadOnly}
         data-testid={row + ":" + col}
         onDoubleClick={() =>
-          dispatch(toggleInitial(row,col))
+          dispatch(toggleInitial(row, col))
         }
         onChange={data => {
-          updateCellSolutionAndValidate(data.target.value,row,col,dispatch)
-          
+          updateCellSolutionAndValidate(data.target.value, row, col, dispatch)
+
         }}
       ></textarea>
     </div>
