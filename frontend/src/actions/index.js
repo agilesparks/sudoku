@@ -16,7 +16,7 @@ else {
 }
 
 
-export const toggleInitial = data => ({
+/*export const toggleInitial = data => ({
   type: "TOGGLE_INITIAL",
   cellRow: data.cell.row,
   cellCol: data.cell.col
@@ -32,7 +32,7 @@ export const updateCellSolution = data => ({
 export const setSavedGamesList = data => ({
   type: "GET_SAVED_GAMES_LIST",
   games: data.games
-});
+});*/
 
 export const setValidationResult = data => ({
   type: "SET_VALIDATION_RESULT",
@@ -52,7 +52,7 @@ export const setPossibleSolutions = data => ({
 
 // our first get method that uses our backend api to
 // fetch data from our data base
-export function getSavedGameListFromAPI(dispatch) {
+/*export function getSavedGameListFromAPI(dispatch) {
   axios
     .get(myURL + "/api/getData")
     .then(
@@ -68,7 +68,7 @@ export function getSavedGameListFromAPI(dispatch) {
         console.log(error);
       }
     );
-}
+}*/
 
 export function validateAndGetPossibleSolutions() {
   return internalValidateAndGetPossibleSolutions

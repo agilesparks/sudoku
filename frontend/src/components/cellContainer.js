@@ -16,7 +16,6 @@ const mapStateToProps = (state,props) => {
     row: row,
     col: col,
     possibleSolution: getSolutionFromGrid(state.possibleSolutions, row, col),
-    grid: state.grid,
     isGiven: isGiven(state.grid, row, col),
     invalidityDetails: state.invalidityDetails,
     userSolution: getSolutionFromGrid(state.grid, row, col)

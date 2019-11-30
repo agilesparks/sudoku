@@ -3,7 +3,7 @@ import { validateAndGetPossibleSolutions } from "../actions";
 
 
 
-export function Cell({ row, col, dispatch, userSolution, possibleSolution, grid, invalidityDetails, isGiven}) {
+export function Cell({ row, col, dispatch, userSolution, possibleSolution, invalidityDetails, isGiven}) {
   let solution = userSolution
   if (userSolution === "" && possibleSolution.length<=4 && possibleSolution.length>=1)
     solution = possibleSolution.substr(0 , 4)
