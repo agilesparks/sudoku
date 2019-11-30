@@ -1,5 +1,5 @@
 import React from "react";
-import { validateAndGetPossibleSolutions } from "../actions";
+import { validateAndGetPossibleSolutions, toggleInitial, updateCellSolution } from "../actions";
 
 
 
@@ -37,19 +37,10 @@ export function Cell({ row, col, dispatch, userSolution, possibleSolution, inval
         readOnly={isReadOnly}
         data-testid={row + ":" + col}
         onDoubleClick={() =>
-          dispatch({
-            type: "TOGGLE_INITIAL",
-            cellRow: row,
-            cellCol: col
-          })
+          dispatch(toggleInitial(row,col))
         }
         onChange={data => {
-          dispatch({
-            type: "UPDATE_CELL_SOLUTION",
-            solution: data.target.value,
-            cellRow: row,
-            cellCol: col
-          });
+          dispatch(updateCellSolution(data.target.value,row,col))
           dispatch(validateAndGetPossibleSolutions())
           
         }}

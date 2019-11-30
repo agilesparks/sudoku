@@ -1,5 +1,4 @@
 import axios from "axios"
-import { functionExpression } from "@babel/types"
 
 let myURL = ""
 
@@ -16,59 +15,31 @@ else {
 }
 
 
-/*export const toggleInitial = data => ({
+export const toggleInitial = (row, col) => ({
   type: "TOGGLE_INITIAL",
-  cellRow: data.cell.row,
-  cellCol: data.cell.col
+  cellRow: row,
+  cellCol: col
 });
 
-export const updateCellSolution = data => ({
+export const updateCellSolution = (solution,row,col) => ({
   type: "UPDATE_CELL_SOLUTION",
-  solution: data.solution,
-  cellRow: data.cell.row,
-  cellCol: data.cell.col
+  solution: solution,
+  cellRow: row,
+  cellCol: col
 });
 
-export const setSavedGamesList = data => ({
-  type: "GET_SAVED_GAMES_LIST",
-  games: data.games
-});*/
-
-export const setValidationResult = data => ({
+export const setValidationResult = (isValid, invalidityDetails) => ({
   type: "SET_VALIDATION_RESULT",
-  isValid: data.isValid,
-  invalidityDetails: data.invalidityDetails
+  isValid: isValid,
+  invalidityDetails: invalidityDetails
 });
 
-export const setPossibleSolutions = data => ({
+export const setPossibleSolutions = possibleSolutions => ({
   type: "SET_POSSIBLE_SOLUTIONS",
-  possibleSolutions: data.possibleSolutions
+  possibleSolutions: possibleSolutions
 });
 
-// just a note, here, in the front end, we use the id key of our data object
-// in order to identify which we want to Update or delete.
-// for our back end, we use the object id assigned by MongoDB to modify
-// data base entries
 
-// our first get method that uses our backend api to
-// fetch data from our data base
-/*export function getSavedGameListFromAPI(dispatch) {
-  axios
-    .get(myURL + "/api/getData")
-    .then(
-      res => {
-        dispatch(
-          setSavedGamesList({
-            type: "GET_SAVED_GAMES_LIST",
-            games: res.data.data
-          })
-        );
-      },
-      error => {
-        console.log(error);
-      }
-    );
-}*/
 
 export function validateAndGetPossibleSolutions() {
   return internalValidateAndGetPossibleSolutions
@@ -85,11 +56,7 @@ function validate(dispatch, getState) {
     .then(
       res => {
         dispatch(
-          setValidationResult({
-            type: "SET_VALIDATION_RESULT",
-            isValid: res.data.data.isValid,
-            invalidityDetails: res.data.data.invalidityDetails
-          })
+          setValidationResult(res.data.data.isValid, res.data.data.invalidityDetails)
         );
       },
       error => {
@@ -103,12 +70,7 @@ function getPossibleSolutions(dispatch, getState) {
     .post(myURL + "/api/possibleSolutions", { grid: getState().grid })
     .then(
       res => {
-        dispatch(
-          setPossibleSolutions({
-            type: "SET_POSSIBLE_SOLUTIONS",
-            possibleSolutions: res.data.data.possibleSolutions
-          })
-        );
+        dispatch(setPossibleSolutions(res.data.data.possibleSolutions));
       },
       error => {
         console.log(error);
