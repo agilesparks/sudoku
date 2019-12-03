@@ -1,50 +1,35 @@
 import React from "react";
 import { render, fireEvent, waitForElement, wait } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
+import { Cell } from '../../components/cell'
 
 
 describe("cell tests", () => {
 
-  beforeEach(() => {  });
+  beforeEach(() => { 
 
-  test.skip("cannot enter more than 4 digits in a cell", async () => {
-   
+
+   });
+
+  test("normal cell is enalbed", async () => {
     const { getByText, getByTestId, debug } = render(
-      <Provider store={store}>{<App />}</Provider>
+      <Cell row={3} col={4} possibleSolution={[]} isGiven={false} 
+      isValid= {true} userSolution={[]}/>
+    );
+    expect(getByTestId("3:4")).not.toHaveAttribute('readonly')
+  })
+
+  test("start of puzzle (double clicked) cell is disalbed", async () => {
+    const { getByText, getByTestId, debug } = render(
+      <Cell row={3} col={4} possibleSolution={[]} isGiven={true} 
+      isValid= {true} userSolution={[]}/>
     );
 
-    axiosMock.post.mockImplementationOnce(() =>
-    Promise.resolve({
-      data: { data: { isValid: true, invalidityDetails: [] } }
-    })
-  );
-   let input = getByTestId("0:0");
-    fireEvent.change(input, { target: { value: "99" } });
-    axiosMock.post.mockImplementationOnce(() =>
-    Promise.resolve({
-      data: { data: { isValid: false, invalidityDetails: [{row: 0,col: 1}] } }
-    })
-  );
-
-   const input2 = getByTestId("0:1");
-   fireEvent.change(input2, { target: { value: "99" } });
-    await wait(() => getByText("Not Valid"))
-    expect(getByText("Not Valid")).toBeInTheDocument();
-    expect(getByTestId("0:1")).toHaveAttribute('style',"color: rgb(40, 44, 52); background-color: rgb(233, 87, 63);")
-    
-    axiosMock.post.mockImplementationOnce(() =>
-    Promise.resolve({
-      data: { data: { isValid: true, invalidityDetails: [] } }
-    })
-  );
-    input = getByTestId("0:1");
-    fireEvent.change(input, { target: { value: "88" } });
+    expect(getByTestId("3:4")).toHaveAttribute('readonly')
+  })
 
 
-   // fireEvent.click(getByText("Not Valid"));
-    await wait(() => getByText("Valid"))
-    expect(getByText("Valid")).toBeTruthy();
-  });
+
 
  
     

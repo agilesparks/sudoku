@@ -2,7 +2,6 @@ import React from "react";
 import { updateCellSolutionAndValidate, toggleInitial } from "../actions";
 
 
-
 export function Cell({ row, col, dispatch, userSolution, possibleSolution, isValid, isGiven }) {
   let solution = userSolution
   if (userSolution === "" && possibleSolution.length <= 4 && possibleSolution.length >= 1)
