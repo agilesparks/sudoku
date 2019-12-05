@@ -25,9 +25,9 @@ pipeline {
                 sh 'docker run --rm -p 4001:4001 -e "PORT=4001" -d --name e2ebackend backendforjenkins'
                 sh 'docker run --rm -p 4000:4000 -e "PORT=4000" -d --name e2efrontend -e "REACT_APP_BACKEND_PORT=4001" frontendforjenkins'
                 echo 'Postman/newman tests...'
-                sh 'docker run --network="host" -v $PWD/backend/apiTestsPostmanCollections:/etc/newman  postman/newman run ValidationTests.postman_collection.json'
+                //sh 'docker run --network="host" -v $PWD/backend/apiTestsPostmanCollections:/etc/newman  postman/newman run ValidationTests.postman_collection.json'
                 echo 'Cypress tests...'
-                sh 'docker run --network="host"  -v $PWD/e2etests:/e2e -w /e2e cypress/included:3.2.0 --env BASE_URL=http://localhost:4000/ ' 
+                sh 'docker run --network="host"  -v $PWD/e2etests:/e2e -w /e2e cypress/included:3.2.0 --env NO_COLOR=1 --env BASE_URL=http://localhost:4000/ ' 
                 sh 'docker stop e2ebackend'
                 sh 'docker stop e2efrontend'
             }
