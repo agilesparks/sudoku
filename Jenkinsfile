@@ -18,6 +18,7 @@ pipeline {
             }
         }
         stage('E2E Tests') {
+             ansiColor('xterm') {
              steps {
                 echo 'E2E Testing..'
                 sh 'docker stop e2efrontend || true'
@@ -30,7 +31,7 @@ pipeline {
                 sh 'docker run --network="host"  -v $PWD/e2etests:/e2e -w /e2e cypress/included:3.6.0 --env NO_COLOR=1 --env BASE_URL=http://localhost:4000/ ' 
                 sh 'docker stop e2ebackend'
                 sh 'docker stop e2efrontend'
-            }
+            }}
         }
         stage('Deploy') {
             steps {
