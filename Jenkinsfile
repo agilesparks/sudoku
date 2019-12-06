@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+  ansiColor('xterm')
+}
+
     stages {
         stage('Build') {
             steps {
@@ -17,7 +21,6 @@ pipeline {
                 sh 'docker run --rm -e "CI=true" --entrypoint "npm" frontendforjenkins test'
             }
         }
-       ansiColor('xterm') { stage('E2E Tests') {
              
              steps {
                 echo 'E2E Testing..'
@@ -33,7 +36,7 @@ pipeline {
                 sh 'docker stop e2efrontend'
             }
         }
-       }
+       
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
