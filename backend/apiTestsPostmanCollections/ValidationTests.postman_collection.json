@@ -132,9 +132,16 @@
 	],
 	"variable": [
 		{
-			"id": "734df6b6-26b9-4c4b-a7c6-299200edb8b2",
+			"id": "2f32fff5-5125-4334-a90c-dbd9f4b7061a",
 			"key": "baseURL",
 			"value": "http://localhost:3001/",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "240ab382-13ce-4c64-afce-31cade7e770a",
+			"key": "BASE_URL",
+			"value": "",
 			"type": "string"
 		}
 	],
