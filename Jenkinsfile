@@ -21,7 +21,7 @@ pipeline {
                 sh 'docker run --rm -e "CI=true" --entrypoint "npm" frontendforjenkins test'
             }
         }
-             
+         stage('E2E Tests') {     
              steps {
                 echo 'E2E Testing..'
                 sh 'docker stop e2efrontend || true'
