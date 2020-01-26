@@ -13,16 +13,16 @@ describe("cell tests", () => {
 
   test("normal cell is enalbed", async () => {
     const { getByText, getByTestId, debug } = render(
-      <Cell row={3} col={4} possibleSolution={[]} isGiven={false} 
-      isValid= {true} userSolution={[]}/>
+      <Cell row={3} col={4} possibleSolution={""} isGiven={false} 
+      isValid= {true} userSolution={""}/>
     );
     expect(getByTestId("3:4")).not.toHaveAttribute('readonly')
   })
 
   test("start of puzzle (double clicked) cell is disalbed", async () => {
     const { getByText, getByTestId, debug } = render(
-      <Cell row={3} col={4} possibleSolution={[]} isGiven={true} 
-      isValid= {true} userSolution={[]}/>
+      <Cell row={3} col={4} possibleSolution={""} isGiven={true} 
+      isValid= {true} userSolution={""}/>
     );
 
     expect(getByTestId("3:4")).toHaveAttribute('readonly')
