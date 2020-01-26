@@ -14,7 +14,7 @@ context('Window', () => {
         let myMock = getPossibleSolutionsBaseMock()
         console.log(myMock)
         myMock[0][0].solution = "6789"
-        cy.route('POST', "http://localhost:3001/api/possibleSolutions",
+        cy.route('POST', Cypress.env('BASE_URL')+"api/possibleSolutions",
             {
                 success: true, data: {possibleSolutions: myMock}
             })
