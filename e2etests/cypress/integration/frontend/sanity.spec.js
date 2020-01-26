@@ -9,6 +9,7 @@ context('Window', () => {
   
     it('cy.window() - get the global window object', () => {
       // https://on.cypress.io/window
+   
       cy.get('[data-testid="3:2"]').type('1')
       cy.get('[data-testid="3:3"]').should('have.css', 'background-color')
       .and('eq', 'rgb(129, 183, 26)')
