@@ -1,7 +1,7 @@
 import React from "react";
-import Grid from "./grid";
+import {GridContainer} from "./gridContainer";
 
-export default function App() {
+export default function App() { 
   return (
     <div>
       <div className="flexGrid" >
@@ -9,7 +9,7 @@ export default function App() {
           <BoardsManager />
         </div>
  */}        <div className="flexColumn" >
-          <Grid />
+          <GridContainer />
         </div>
       </div>
     </div>

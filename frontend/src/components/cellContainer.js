@@ -1,4 +1,5 @@
-import { connect } from 'react-redux'
+//import { connect } from 'react-redux'
+import React from "react";
 import { Cell } from './cell'
 
 import {
@@ -10,7 +11,23 @@ import {
 } from "../utils/gridUtils";
 
 
-const mapStateToProps = (state, props) => {
+export function CellContainer({possibleSolutions,
+  invalidityDetails, grid, dispatch,subgridNumber, cellNumber }) { 
+    const row = getCellRow(3, subgridNumber, cellNumber)
+    const col = getCellCol(3, subgridNumber, cellNumber)
+ // const root = useSelector(state => state.root);
+  return (
+    <Cell dispatch = {dispatch}
+    row = {row} col = {col}
+    possibleSolution =  {getSolutionFromGrid(possibleSolutions, row, col)}
+    isGiven = {isGiven(grid, row, col)}
+    isValid = {isValid(invalidityDetails,row,col)}
+    userSolution = {getSolutionFromGrid(grid, row, col)}
+     />
+  );
+}
+
+/*const mapStateToProps = (state, props) => {
   const row = getCellRow(3, props.subgridNumber, props.cellNumber)
   const col = getCellCol(3, props.subgridNumber, props.cellNumber)
   return {
@@ -27,4 +44,4 @@ const mapStateToProps = (state, props) => {
 export const CellContainer = connect(
   mapStateToProps,
   null
-)(Cell)
+)(Cell)*/
