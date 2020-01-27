@@ -11,18 +11,17 @@ import {
 } from "../utils/gridUtils";
 
 
-export function CellContainer({possibleSolutions,
-  invalidityDetails, grid, dispatch,subgridNumber, cellNumber }) { 
+export function CellContainer({myStore, dispatch,subgridNumber, cellNumber }) { 
     const row = getCellRow(3, subgridNumber, cellNumber)
     const col = getCellCol(3, subgridNumber, cellNumber)
  // const root = useSelector(state => state.root);
   return (
     <Cell dispatch = {dispatch}
     row = {row} col = {col}
-    possibleSolution =  {getSolutionFromGrid(possibleSolutions, row, col)}
-    isGiven = {isGiven(grid, row, col)}
-    isValid = {isValid(invalidityDetails,row,col)}
-    userSolution = {getSolutionFromGrid(grid, row, col)}
+    possibleSolution =  {getSolutionFromGrid(myStore.possibleSolutions, row, col)}
+    isGiven = {isGiven(myStore.grid, row, col)}
+    isValid = {isValid(myStore.invalidityDetails,row,col)}
+    userSolution = {getSolutionFromGrid(myStore.grid, row, col)}
      />
   );
 }
