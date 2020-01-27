@@ -2,10 +2,12 @@ import React from "react";
 import { updateCellSolutionAndValidate, toggleInitial } from "../actions";
 
 
-export function Cell({ row, col, dispatch, userSolution, possibleSolution, isValid, isGiven }) {
+export function Cell({ row, col, dispatch, userSolution, possibleSolution, isValid, isGiven, showPossibleSolutions }) {
   let solution = userSolution
-  if (userSolution === "" && possibleSolution.length <= 4 && possibleSolution.length >= 1)
-    solution = possibleSolution.substr(0, 4)
+  if (showPossibleSolutions === undefined || showPossibleSolutions === true) {
+    if (userSolution === "" && possibleSolution.length <= 4 && possibleSolution.length >= 1)
+      solution = possibleSolution.substr(0, 4)
+  }
 
   let textColor = "#282c34";
   let isReadOnly = false;
