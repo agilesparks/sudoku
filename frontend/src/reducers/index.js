@@ -6,9 +6,9 @@ import {
 
 
 
-const sudokuRoot = 3;
+//const sudokuRoot = 3;
 
-function getInitialState(root) {
+export function getInitialState(root) {
   return {
     grid: getCleanGrid(root),
     isValid: true,
@@ -20,9 +20,9 @@ function getInitialState(root) {
 }
 
 export default function rootReducer(state, action) {
-  if (typeof state === "undefined") {
+  /*if (typeof state === "undefined") {
     return getInitialState(sudokuRoot);
-  } else {
+  } else*/ {
     let newState;
     switch (action.type) {
       case "RESET_STORE":
