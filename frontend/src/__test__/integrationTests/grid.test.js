@@ -11,7 +11,7 @@ describe("cell tests", () => {
     });
 
     test("grid functioning", async () => {
-        let myStore = getInitialState(3) 
+        let myStore = getInitialState(2) 
 
         let myDispatch = function () { }
     

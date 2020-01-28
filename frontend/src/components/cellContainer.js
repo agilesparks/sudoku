@@ -12,8 +12,8 @@ import {
 
 
 export function CellContainer({myStore, dispatch,subgridNumber, cellNumber }) { 
-    const row = getCellRow(3, subgridNumber, cellNumber)
-    const col = getCellCol(3, subgridNumber, cellNumber)
+    const row = getCellRow(myStore.root, subgridNumber, cellNumber)
+    const col = getCellCol(myStore.root, subgridNumber, cellNumber)
  // const root = useSelector(state => state.root);
   return (
     <Cell dispatch = {dispatch}
